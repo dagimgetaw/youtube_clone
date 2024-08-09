@@ -14,91 +14,100 @@ import tom from "../../assets/tom.png";
 import megan from "../../assets/megan.png";
 import cameron from "../../assets/cameron.png";
 
-const side = [
-  { name: "Home", img: home },
-  { name: "Gaming", img: game_icon },
-  { name: "Automobiles", img: automobiles },
-  { name: "Sports", img: sports },
-  { name: "Entertainment", img: entertainment },
-  { name: "Technology", img: tech },
-  { name: "Music", img: music },
-  { name: "Blogs", img: blogs },
-  { name: "News", img: news },
-];
-
-const sub = [
-  { name: "PewDiePie", img: jack },
-  { name: "MrBeast", img: simon },
-  { name: "Justine Bieber", img: tom },
-  { name: "5-minute Crafts", img: megan },
-  { name: "Nas Daily", img: cameron },
-];
-
 // eslint-disable-next-line react/prop-types
-const Sidebar = ({ sidebar }) => {
+const Sidebar = ({ sidebar, category, setCategory }) => {
   return (
     <div className={`sidebar ${sidebar ? "" : "small-sidebar"}`}>
       <div className="shortcut-links">
-        {side.map((side) => (
-          <SideContent sideObj={side} key={side.name} />
-        ))}
-        {/* <div className="side-link">
+        <div
+          className={`side-link ${category === 0 ? "active" : ""}`}
+          onClick={() => setCategory(0)}
+        >
           <img src={home} alt="home" />
           <p>Home</p>
         </div>
-        <div className="side-link">
+        <div
+          className={`side-link ${category === 20 ? "active" : ""}`}
+          onClick={() => setCategory(20)}
+        >
           <img src={game_icon} alt="home" />
           <p>Gaming</p>
         </div>
-        <div className="side-link">
+        <div
+          className={`side-link ${category === 2 ? "active" : ""}`}
+          onClick={() => setCategory(2)}
+        >
           <img src={automobiles} alt="home" />
           <p>Automobiles</p>
         </div>
-        <div className="side-link">
+        <div
+          className={`side-link ${category === 17 ? "active" : ""}`}
+          onClick={() => setCategory(17)}
+        >
           <img src={sports} alt="home" />
           <p>Sports</p>
         </div>
-        <div className="side-link">
+        <div
+          className={`side-link ${category === 24 ? "active" : ""}`}
+          onClick={() => setCategory(24)}
+        >
           <img src={entertainment} alt="home" />
           <p>Entertainment</p>
         </div>
-        <div className="side-link">
+        <div
+          className={`side-link ${category === 28 ? "active" : ""}`}
+          onClick={() => setCategory(28)}
+        >
           <img src={tech} alt="home" />
           <p>Technology</p>
         </div>
-        <div className="side-link">
+        <div
+          className={`side-link ${category === 10 ? "active" : ""}`}
+          onClick={() => setCategory(10)}
+        >
           <img src={music} alt="home" />
           <p>Music</p>
         </div>
-        <div className="side-link">
+        <div
+          className={`side-link ${category === 22 ? "active" : ""}`}
+          onClick={() => setCategory(22)}
+        >
           <img src={blogs} alt="home" />
           <p>Blogs</p>
         </div>
-        <div className="side-link">
+        <div
+          className={`side-link ${category === 25 ? "active" : ""}`}
+          onClick={() => setCategory(25)}
+        >
           <img src={news} alt="home" />
           <p>News</p>
-        </div> */}
+        </div>
         <hr />
       </div>
       <div className="subscribed-lists">
         <h3>Subscribed</h3>
-        {sub.map((sub) => (
-          <SideContent sideObj={sub} key={side.sub} />
-        ))}
+        <div className="side-link">
+          <img src={jack} alt="jack" />
+          <p>PewDiePie</p>
+        </div>
+        <div className="side-link">
+          <img src={simon} alt="MrBeast" />
+          <p>MrBeast</p>
+        </div>
+        <div className="side-link">
+          <img src={tom} alt="Justine Bieber" />
+          <p>Justine Bieber</p>
+        </div>
+        <div className="side-link">
+          <img src={megan} alt="5-minute Crafts" />
+          <p>5-minute Crafts</p>
+        </div>
+        <div className="side-link">
+          <img src={cameron} alt="Nas Daily" />
+          <p>Nas Daily</p>
+        </div>
       </div>
     </div>
-  );
-};
-
-// eslint-disable-next-line react/prop-types
-const SideContent = (props) => {
-  return (
-    <>
-      <div className="side-link">
-        <img src={props.sideObj.img} alt={props.sideObj.name} />
-        <p>{props.sideObj.name}</p>
-      </div>
-    </>
   );
 };
 
