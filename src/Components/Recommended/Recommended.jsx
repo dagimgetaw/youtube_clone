@@ -30,8 +30,8 @@ const thumbnail = [
 const Recommended = () => {
   return (
     <div className="recommended">
-      {thumbnail.map((th) => (
-        <Card thObj={th} key={th.name} />
+      {thumbnail.map((th, index) => (
+        <Card thObj={th} key={index} />
       ))}
     </div>
   );
