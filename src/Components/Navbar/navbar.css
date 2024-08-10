@@ -37,3 +37,37 @@ nav {
   border-radius: 50%;
   width: 35px;
 }
+@media (max-width: 900px) {
+  .menu-icon {
+    display: none;
+  }
+  .nav-right img {
+    display: none;
+  }
+  .nav-right .user-icon {
+    display: block;
+    width: 30px;
+  }
+  .nav-left .logo {
+    width: 90px;
+  }
+  .nav-middle .search-box input {
+    width: 130px;
+  }
+}
+@media (max-width: 450px) {
+  .nav-left .logo {
+    width: 100px;
+  }
+  .nav-middle .search-box input {
+    width: 100px;
+  }
+}
+@media (max-width: 380px) {
+  .nav-left .logo {
+    width: 80px;
+  }
+  .nav-middle .search-box input {
+    width: 60px;
+  }
+}
