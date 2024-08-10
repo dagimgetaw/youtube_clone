@@ -1,52 +1,46 @@
 import "./recommended.css";
-import thumbnail1 from "../../assets/thumbnail1.png";
-import thumbnail2 from "../../assets/thumbnail2.png";
-import thumbnail3 from "../../assets/thumbnail3.png";
-import thumbnail4 from "../../assets/thumbnail4.png";
-import thumbnail5 from "../../assets/thumbnail5.png";
-import thumbnail6 from "../../assets/thumbnail6.png";
-import thumbnail7 from "../../assets/thumbnail7.png";
-import thumbnail8 from "../../assets/thumbnail8.png";
-
-const thumbnail = [
-  { name: "thumbnail1", img: thumbnail1 },
-  { name: "thumbnail2", img: thumbnail2 },
-  { name: "thumbnail3", img: thumbnail3 },
-  { name: "thumbnail4", img: thumbnail4 },
-  { name: "thumbnail5", img: thumbnail5 },
-  { name: "thumbnail6", img: thumbnail6 },
-  { name: "thumbnail7", img: thumbnail7 },
-  { name: "thumbnail8", img: thumbnail8 },
-  { name: "thumbnail1", img: thumbnail1 },
-  { name: "thumbnail2", img: thumbnail2 },
-  { name: "thumbnail3", img: thumbnail3 },
-  { name: "thumbnail4", img: thumbnail4 },
-  { name: "thumbnail5", img: thumbnail5 },
-  { name: "thumbnail6", img: thumbnail6 },
-  { name: "thumbnail7", img: thumbnail7 },
-  { name: "thumbnail8", img: thumbnail8 },
-];
-
-const Recommended = () => {
-  return (
-    <div className="recommended">
-      {thumbnail.map((th, index) => (
-        <Card thObj={th} key={index} />
-      ))}
-    </div>
-  );
-};
+import { useEffect, useState } from "react";
+import { API_KEY } from "../../data";
+import moment from "moment";
+import { value_convertor } from "../../data";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const Card = (props) => {
+const Recommended = ({ categoryId }) => {
+  const [apiData, setApiData] = useState([]);
+
+  const fetchData = async () => {
+    const relatedVideo_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=45&regionCode=US&videoCategoryId=${categoryId}&key=${API_KEY}`;
+    await fetch(relatedVideo_url)
+      .then((res) => res.json())
+      .then((data) => setApiData(data.items));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
-    <div className="side-video-list">
-      <img src={props.thObj.img} alt={props.thObj.name} />
-      <div className="video-info">
-        <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
-        <p>Lorem ipsum</p>
-        <p>355K view</p>
-      </div>
+    <div className="recommended">
+      {apiData.map((item, index) => {
+        return (
+          <Link
+            to={`/video/${item.snippet.categoryId}/${item.id}`}
+            className="side-video-list"
+            key={index}
+          >
+            <img src={item.snippet.thumbnails.medium.url} alt="d" />
+            <div className="video-info">
+              <h4>{item.snippet.title.slice(0, 40)}</h4>
+              <p>{item.snippet.channelTitle}</p>
+              <p>
+                {value_convertor(item.statistics.viewCount)} view &bull;{" "}
+                {moment(item.snippet.publishedAt).fromNow()}
+              </p>
+            </div>
+          </Link>
+        );
+      })}
     </div>
   );
 };
