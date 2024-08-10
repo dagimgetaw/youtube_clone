@@ -35,6 +35,7 @@ const Navbar = ({ setSidebar }) => {
         <img src={notification_icon} alt="notification icon" />
         <img src={profile_icon} className="user-icon" alt="profile icon" />
       </div>
+      <p className="developed_by">Developed by Dagim Getaw</p>
     </nav>
   );
 };

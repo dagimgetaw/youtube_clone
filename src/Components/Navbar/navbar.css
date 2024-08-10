@@ -6,6 +6,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 10;
+  flex-wrap: wrap;
 }
 .nav-left .menu-icon {
   width: 22px;
@@ -36,6 +37,12 @@ nav {
 .nav-right .user-icon {
   border-radius: 50%;
   width: 35px;
+}
+.developed_by {
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
 }
 @media (max-width: 900px) {
   .menu-icon {
