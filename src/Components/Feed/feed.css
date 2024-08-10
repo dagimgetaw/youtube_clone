@@ -23,3 +23,6 @@
 .card p {
   font-size: 14px;
 }
+.get_id {
+  display: none;
+}
