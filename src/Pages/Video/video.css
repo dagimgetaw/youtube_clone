@@ -8,3 +8,9 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+@media (max-width: 900px) {
+  .play-container {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+}
